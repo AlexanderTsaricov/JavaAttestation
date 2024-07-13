@@ -11,6 +11,7 @@ public class Notebook {
     public String[] randomHardDriveNameList = {"Seagate Barracuda", "Toshiba", "Western Digital", "Seagate FireCuda"};
     public int[] randomHardDriveMemory = {528, 1024, 2048, 4096, 8192};
     public int[] randomDiagonalList = {10, 11, 12, 13, 14, 15, 17};
+    public String[] randomColorList = {"Red", "Black", "Wight", "Yellow", "Green"};
     public int id = generateId();
     public String brand = "No name";
     public String processor = "No name";
@@ -20,6 +21,7 @@ public class Notebook {
     public String hardDriveName = "No name";
     public int hardDriveCount = 0;
     public int dysplayDiagonal = 0;
+    public String color = "No name";
 
     public String getInformation () {
         String generalInformation = String.format("""
@@ -30,7 +32,8 @@ public class Notebook {
             Оперативная память: %d Гб
             Жесткий диск: %s %d Гб
             Диагональ дисплея: %d дюймов
-            """,id , brand, processor, videoCard, videoCardMemory, RAM, hardDriveName, hardDriveCount, dysplayDiagonal);
+            Цвет: %s
+            """,id , brand, processor, videoCard, videoCardMemory, RAM, hardDriveName, hardDriveCount, dysplayDiagonal, color);
         return generalInformation;
     }
     private static int generateId () {
@@ -47,6 +50,7 @@ public class Notebook {
         hardDriveName = getRandomStringParameter(randomHardDriveNameList);
         hardDriveCount = getRandomIntegerParameter(randomHardDriveMemory);
         dysplayDiagonal = getRandomIntegerParameter(randomDiagonalList);
+        color = getRandomStringParameter(randomColorList);
 
 
     }
