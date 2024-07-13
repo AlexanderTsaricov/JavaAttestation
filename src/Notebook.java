@@ -64,9 +64,17 @@ public class Notebook {
         return integerParameter[rnd.nextInt(0, integerParameter.length-1)];
     }
 
-    public void addNameToRandomList (String addName, String[] list) {
+    public void addNameToRandomStringList (String addName, String[] list) {
         String[] tempBrandList = list.clone();
         list = new String[list.length+1];
+        for (int i = 0; i < tempBrandList.length; i++) {
+            list[i] = tempBrandList[i];
+        }
+        list[list.length-1] = addName;
+    }
+    public void addNameToRandomIntList (int addName, int[] list) {
+        int[] tempBrandList = list.clone();
+        list = new int[list.length+1];
         for (int i = 0; i < tempBrandList.length; i++) {
             list[i] = tempBrandList[i];
         }

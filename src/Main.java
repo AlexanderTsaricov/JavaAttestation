@@ -29,6 +29,9 @@ public class Main {
                 6. Выход
                 """;
         while (flag) {
+            if (flag == false) {
+                System.exit(0);
+            }
             if (flag != false) {
                 System.out.println(mainMenuMessage);
                 System.out.print("Введите цифру: ");
@@ -46,8 +49,13 @@ public class Main {
                         break;
                     case 3:
                         getFiltredComputerList(notebooks, filterIntSetting);
+                        break;
+                    case 4:
+                        addComputer(notebooks);
+                        break;
                     case 5:
                         filterSetting(notebooks, filterIntSetting);
+                        break;
                     default:
                         System.out.println("Не верная команда");
                         System.out.print("Введите цифру: ");
@@ -59,8 +67,15 @@ public class Main {
     }
 
     public static int getEnterMessage () {
-        Scanner enter = new Scanner(System.in);
-        return enter.nextInt();
+        while (true) {
+            Scanner enter = new Scanner(System.in);
+            int mess;
+            if (!enter.hasNextInt()) {
+                continue;
+            }
+            mess = enter.nextInt();
+            return mess;
+        }
     }
 
     public static void getAllNotebook (ArrayList<Notebook> notebooks, int[] filterIntSetting) {
@@ -173,6 +188,7 @@ public class Main {
                 8. Выбрать объем жесткого диска
                 9. Выбрать диагональ монитора
                 10. Выбрать цвет
+                11. Очистить фильтр
                 """;
         boolean flag = true;
         while (flag) {
@@ -257,6 +273,9 @@ public class Main {
                     }
                     filterIntSetting[1] = getEnterMessage();
                     break;
+                case 11:
+                    filterIntSetting = new int[9];
+                    break;
                 default:
                     System.out.println("Не верная команда");
 
@@ -264,5 +283,68 @@ public class Main {
                     enterMessage = getEnterMessage();
             }
         }
+    }
+    public static void addComputer(ArrayList<Notebook> notebooks){
+        Notebook firstComp = notebooks.get(0);
+        Notebook comp = new Notebook();
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Введите бренд: ");
+        String brand = scan.nextLine();
+        comp.brand = brand;
+        firstComp.addNameToRandomStringList(brand, firstComp.randomBrandList);
+        System.out.println("\n");
+
+        System.out.print("Введите название процессора: ");
+        String processor = scan.nextLine();
+        comp.processor = processor;
+        firstComp.addNameToRandomStringList(processor, firstComp.randomProcessorList);
+        System.out.println("\n");
+
+        System.out.print("Введите название видеокарты: ");
+        String videoCard = scan.nextLine();
+        comp.videoCard = videoCard;
+        firstComp.addNameToRandomStringList(videoCard, firstComp.randomVideoCardList);
+        System.out.println("\n");
+
+        System.out.print("Введите количество памяти видеокарты: ");
+        int videoCardMemory = scan.nextInt();
+        comp.videoCardMemory = videoCardMemory;
+        firstComp.addNameToRandomIntList(videoCardMemory, firstComp.randomVideoCardMemoryList);
+        System.out.println("\n");
+
+        System.out.print("Введите количество оперативной памяти: ");
+        int RAM = scan.nextInt();
+        comp.RAM = RAM;
+        firstComp.addNameToRandomIntList(RAM, firstComp.randomRAMList);
+        System.out.println("\n");
+
+        System.out.print("Введите бренд жесткого диска: ");
+        String hardDriveName = scan.next();
+        comp.hardDriveName = hardDriveName;
+        firstComp.addNameToRandomStringList(hardDriveName, firstComp.randomHardDriveNameList);
+        System.out.println("\n");
+
+        System.out.print("Введите количество памяти жесткого диска: ");
+        int hardDriveCount = scan.nextInt();
+        comp.hardDriveCount = hardDriveCount;
+        firstComp.addNameToRandomIntList(hardDriveCount, firstComp.randomHardDriveMemory);
+        System.out.println("\n");
+
+        System.out.print("Введите размер диагонали монитора: ");
+        int dysplayDiagonal = scan.nextInt();
+        comp.dysplayDiagonal = dysplayDiagonal;
+        firstComp.addNameToRandomIntList(dysplayDiagonal, firstComp.randomDiagonalList);
+        System.out.println("\n");
+
+        System.out.print("Введите цвет: ");
+        String color = scan.next();
+        comp.color = color;
+        firstComp.addNameToRandomStringList(color, firstComp.randomColorList);
+        System.out.println("\n");
+
+        notebooks.add(comp);
+        System.out.println("Компьютер со следующими параметрами добавлен");
+        System.out.println(comp.getInformation());
     }
 }
